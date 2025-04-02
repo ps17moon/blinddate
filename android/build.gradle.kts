@@ -6,9 +6,21 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        flatDir {
+            dirs("libs") // ✅ 여기가 중요!!
+        }
+    }
+}
+
 android {
     namespace = "com.example.blinddate"
     compileSdk = 33
+    ndkVersion = "27.0.12077973"
+    sourceSets["main"].manifest.srcFile("app/src/main/AndroidManifest.xml")
 
     defaultConfig {
         applicationId = "com.example.blinddate"
@@ -25,21 +37,14 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
-repositories {
-    google()
-    mavenCentral()
-    flatDir {
-        dirs("libs") // ✅ .aar 파일 인식용
-    }
-}
 
 dependencies {
-    implementation(name = "agora-rtc-sdk-full", ext = "aar") // ✅ .aar 파일 추가
+    implementation(mapOf("name" to "agora-rtc-sdk-full", "ext" to "aar")) // ✅ .aar 파일 추가
     implementation("androidx.annotation:annotation:1.2.0")
     implementation("com.google.firebase:firebase-storage:20.3.0")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
@@ -59,6 +64,6 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 
-tasks.register<Delete>("clean") {
+tasks.register<Delete>("cleaning") {
     delete(rootProject.layout.buildDirectory)
 }

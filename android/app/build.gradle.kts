@@ -5,18 +5,24 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+repositories {
+    google()
+    mavenCentral()
+}
+
+
 android {
     namespace = "com.example.blinddate"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
-
+    ndkVersion = "27.0.12077973"
+    
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
     defaultConfig {
@@ -28,6 +34,8 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        manifestPlaceholders["applicationName"] = "io.flutter.app.FlutterApplication"
+
     }
 
     buildTypes {

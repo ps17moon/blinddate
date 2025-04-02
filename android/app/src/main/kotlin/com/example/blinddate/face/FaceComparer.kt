@@ -10,7 +10,7 @@ import java.io.ByteArrayOutputStream
 class FaceComparer {
 
     private val client = OkHttpClient()
-    private val serverUrl = "http://YOUR_API_SERVER/verify" // ❗️DeepFace API 서버 주소
+    private val serverUrl = "deepface_server.railway.internal" // ❗️DeepFace API 서버 주소
 
     fun compareFaces(face1: Bitmap, face2: Bitmap): Boolean {
         try {
