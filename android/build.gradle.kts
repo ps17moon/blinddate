@@ -49,7 +49,9 @@ dependencies {
     implementation("com.google.firebase:firebase-storage:20.3.0")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("org.json:json:20230227")
+    implementation ("com.google.android.material:material:1.8.0")
 }
+
 
 // ✅ 추가 빌드 디렉토리 설정 유지 (괜찮아요)
 val newBuildDir: Directory = rootProject.layout.buildDirectory.dir("../../build").get()
